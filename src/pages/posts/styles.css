@@ -6,7 +6,7 @@
   gap: 1.5rem;
   background-color: var(--white);
 
-  & header {
+  & > header {
     background-color: var(--primary);
     color: var(--white);
     padding-inline: 2.5rem;
@@ -17,5 +17,9 @@
 
   & > div {
     padding-inline: var(--spacing);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing);
+    padding-bottom: var(--spacing);
   }
 }

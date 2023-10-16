@@ -1,11 +1,19 @@
+import { useEffect } from 'react'
 import { Navigate } from 'react-router-dom'
-import { CreatePost } from '../../components'
-import { useAppSelector } from '../../redux/hooks'
-import './styles.css'
 import { PostsServices } from '../../actions/postsServices/postServices'
+import { CreatePost, SinglePost } from '../../components'
+import { useAppDispatch, useAppSelector } from '../../redux/hooks'
+import { listPosts } from '../../redux/posts/thunks/listPosts'
+import './styles.css'
 
 function Posts() {
   const user = useAppSelector((state) => state.user)
+  const posts = useAppSelector((state) => state.posts)
+  const dispatch = useAppDispatch()
+
+  useEffect(() => {
+    dispatch(listPosts())
+  }, [dispatch])
 
   if (!user.username) {
     return <Navigate to={'/'} />
@@ -19,7 +27,7 @@ function Posts() {
 
       <button
         onClick={() => {
-          PostsServices.delete('66377')
+          PostsServices.delete('66382')
         }}
       >
         delete post
@@ -27,7 +35,23 @@ function Posts() {
 
       <div>
         <CreatePost />
-        {/* list */}
+
+        {posts.loading
+          ? 'loading..'
+          : posts.data
+          ? posts.data.map(({ username, title, content, timestamp }, index) => (
+              <SinglePost
+                key={index}
+                username={username}
+                title={title}
+                content={content}
+                timestamp={timestamp}
+                showActions={username === user.username}
+              />
+            ))
+          : posts.error
+          ? posts.error?.message
+          : null}
       </div>
     </section>
   )

@@ -1,10 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-interface IUserState {
+interface UserState {
   username: string | null
 }
 
-const initialState: IUserState = {
+const initialState: UserState = {
   username: localStorage.getItem('@codeleap-username'),
 }
 
@@ -12,12 +12,12 @@ const userSlice = createSlice({
   name: 'user',
   initialState: initialState,
   reducers: {
-    logout: (state: IUserState) => {
+    logout: (state: UserState) => {
       state.username = null
       localStorage.removeItem('@codeleap-username')
     },
     login: (
-      state: IUserState,
+      state: UserState,
       { payload }: { payload: { username: string } }
     ) => {
       state.username = payload.username

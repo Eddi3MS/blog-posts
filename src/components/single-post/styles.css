@@ -1,0 +1,28 @@
+.single_post_container {
+  border-radius: 16px;
+  overflow: hidden;
+
+  & > header {
+    background-color: var(--primary);
+    color: var(--white);
+    padding-inline: 1.5rem;
+    height: 70px;
+    display: flex;
+    align-items: center;
+  }
+}
+
+.single_post_content {
+  padding: var(--spacing);
+  display: grid;
+  gap: 1rem;
+  border: 1px solid var(--gray3);
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+
+  & .single_post_content__data {
+    display: flex;
+    justify-content: space-between;
+    color: var(--gray1);
+  }
+}
