@@ -1,0 +1,32 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+:root {
+  --primary: #7695ec;
+  --black: #000000;
+  --gray1: #777777;
+  --gray2: #cccccc;
+  --spacing: 1.5rem;
+}
+
+/* fonts */
+
+.text-xl {
+  font-size: 1.375rem;
+}
+
+.text-l {
+  font-size: 1.125rem;
+}
+
+.text-nm {
+  font-size: 1rem;
+}
+
+.text-small {
+  font-size: 0.75rem;
+}
