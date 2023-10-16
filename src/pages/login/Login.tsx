@@ -1,9 +1,9 @@
+import { useState } from 'react'
+import { Navigate } from 'react-router-dom'
 import { Button, Input } from '../../components'
 import { useAppDispatch, useAppSelector } from '../../redux/hooks'
 import { login } from '../../redux/user/userSlice'
-import { Navigate } from 'react-router-dom'
 import './styles.css'
-import React, { useState } from 'react'
 
 function Login() {
   const [username, setUsername] = useState('')
@@ -20,7 +20,7 @@ function Login() {
   }
 
   return (
-    <div className="login_container">
+    <section className="login_container">
       <h1 className="text-xl">Welcome to CodeLeap network!</h1>
       <form onSubmit={handleLogin}>
         <Input
@@ -34,7 +34,7 @@ function Login() {
           ENTER
         </Button>
       </form>
-    </div>
+    </section>
   )
 }
 

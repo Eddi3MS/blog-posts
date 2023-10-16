@@ -1,0 +1,21 @@
+.posts_container {
+  width: min(100%, 800px);
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  background-color: var(--white);
+
+  & header {
+    background-color: var(--primary);
+    color: var(--white);
+    padding-inline: 2.5rem;
+    height: 80px;
+    display: flex;
+    align-items: center;
+  }
+
+  & > div {
+    padding-inline: var(--spacing);
+  }
+}

@@ -17,6 +17,7 @@ function Input(
     className = '',
     labelClass = '',
     error,
+    type,
     ...rest
   }: InputProps,
   ref: React.LegacyRef<HTMLInputElement>
@@ -28,6 +29,7 @@ function Input(
       </label>
 
       <input
+        type={type}
         id={id}
         ref={ref}
         {...rest}

@@ -1,0 +1,27 @@
+.textarea_container {
+  display: grid;
+  gap: 0.5rem;
+  position: relative;
+}
+
+.textarea_input {
+  outline: none;
+  border-radius: 8px;
+  border: 1px solid var(--gray1);
+  padding: 0.5rem 0.625rem;
+  resize: none;
+
+  &:focus {
+    border-color: var(--black);
+  }
+
+  &::placeholder {
+    color: var(--gray2);
+  }
+}
+
+.textarea_error {
+  color: var(--red);
+  position: absolute;
+  bottom: -1rem;
+}
