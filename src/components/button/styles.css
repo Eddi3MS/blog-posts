@@ -1,0 +1,44 @@
+.button {
+  padding: 0.4rem 1.875rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  color: var(--white);
+}
+
+.button:disabled {
+  background-color: var(--gray2);
+  cursor: not-allowed;
+}
+
+.button-green,
+.button-primary {
+  &:hover {
+    filter: brightness(1.05);
+  }
+}
+
+.button-primary {
+  background-color: var(--primary);
+}
+
+.button-green {
+  background-color: var(--green);
+}
+
+.button-red,
+.button-secondary {
+  &:hover {
+    filter: brightness(1.15);
+  }
+}
+
+.button-red {
+  background-color: var(--red);
+}
+
+.button-secondary {
+  color: var(--black);
+  background-color: var(--white);
+  border: 1px solid var(--gray3);
+}

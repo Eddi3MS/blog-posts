@@ -1,0 +1,26 @@
+.input_container {
+  display: grid;
+  gap: 0.5rem;
+  position: relative;
+}
+
+.input_input {
+  outline: none;
+  border-radius: 8px;
+  border: 1px solid var(--gray1);
+  padding: 0.5rem 0.625rem;
+
+  &:focus {
+    border-color: var(--black);
+  }
+
+  &::placeholder {
+    color: var(--gray2);
+  }
+}
+
+.input_error {
+  color: var(--red);
+  position: absolute;
+  bottom: -1rem;
+}

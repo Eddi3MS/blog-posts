@@ -7,10 +7,21 @@
 
 :root {
   --primary: #7695ec;
+  --red: #ff5151;
+  --green: #47b960;
+  --white: #ffffff;
   --black: #000000;
   --gray1: #777777;
   --gray2: #cccccc;
+  --gray3: #999999;
+  --gray4: #dddddd;
   --spacing: 1.5rem;
+}
+
+main {
+  display: grid;
+  min-height: 100vh;
+  background-color: var(--gray4);
 }
 
 /* fonts */
@@ -27,6 +38,6 @@
   font-size: 1rem;
 }
 
-.text-small {
+.text-sm {
   font-size: 0.75rem;
 }

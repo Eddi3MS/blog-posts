@@ -5,7 +5,9 @@ import { store } from '../redux'
 function RootLayout() {
   return (
     <Provider store={store}>
-      <Outlet />
+      <main>
+        <Outlet />
+      </main>
     </Provider>
   )
 }
