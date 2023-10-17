@@ -27,30 +27,32 @@ function ListPosts() {
 
   return (
     <>
-      {posts.loading ? (
-        <span className="text-center">loading..</span>
-      ) : posts.data ? (
-        posts.data.map(
-          ({ username, title, content, created_datetime, id }, index) => (
-            <SinglePost
-              key={index}
-              username={username}
-              title={title}
-              content={content}
-              timestamp={created_datetime}
-              showActions={username === user.username}
-              handleDeleteModal={() => setDeleteModalData({ show: true, id })}
-              handleUpdateModal={() =>
-                setUpdateModalData({ show: true, id, content, title })
-              }
-            />
+      <>
+        {posts.loading ? (
+          <span className="text-center">loading..</span>
+        ) : posts.data && posts.data.length > 0 ? (
+          posts.data.map(
+            ({ username, title, content, created_datetime, id }, index) => (
+              <SinglePost
+                key={index}
+                username={username}
+                title={title}
+                content={content}
+                timestamp={created_datetime}
+                showActions={username === user.username}
+                handleDeleteModal={() => setDeleteModalData({ show: true, id })}
+                handleUpdateModal={() =>
+                  setUpdateModalData({ show: true, id, content, title })
+                }
+              />
+            )
           )
-        )
-      ) : (
-        <span className="text-center">
-          {posts.error?.message || 'No posts found.'}
-        </span>
-      )}
+        ) : (
+          <span className="text-center">
+            {posts.error?.message || 'No posts found.'}
+          </span>
+        )}
+      </>
 
       <Pagination />
 
@@ -61,6 +63,7 @@ function ListPosts() {
           postId={deleteModalData.id}
         />
       ) : null}
+
       {updateModalData.show ? (
         <UpdateModal
           open={updateModalData.show}

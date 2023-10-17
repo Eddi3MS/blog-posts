@@ -23,7 +23,7 @@ function SinglePost({
   handleUpdateModal,
 }: SinglePostProps) {
   return (
-    <article className="single_post_container">
+    <article className="single_post_container fade-in-top">
       <header>
         <h3 className="text-xl">{title}</h3>
         {showActions ? (

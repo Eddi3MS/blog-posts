@@ -16,7 +16,7 @@ function Posts() {
 
   return (
     <>
-      <section className="posts_container">
+      <section className="posts_container fade-in">
         <header>
           <h1 className="text-xl">CodeLeap Network</h1>
 

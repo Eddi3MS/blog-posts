@@ -1,5 +1,5 @@
 [x] login
-[ ] logout
+[x] logout
 [x] create
 [x] read
 [x] update

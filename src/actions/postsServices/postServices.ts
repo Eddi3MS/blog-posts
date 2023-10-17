@@ -30,7 +30,9 @@ class PostsServices {
     currentPage: number
   ): Promise<AxiosResponse<ListPostsDTO>> {
     return await api.get<ListPostsDTO>(
-      `/careers/${currentPage > 1 ? `?page=${currentPage}` : ''}`
+      `/careers/${
+        currentPage > 1 ? `?limit=10&offset=10&page=${currentPage}` : ''
+      }`
     )
   }
 }

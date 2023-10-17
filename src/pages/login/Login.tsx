@@ -20,7 +20,7 @@ function Login() {
   }
 
   return (
-    <section className="login_container">
+    <section className="login_container fade-in-top">
       <h1 className="text-xl">Welcome to CodeLeap network!</h1>
       <form onSubmit={handleLogin}>
         <Input

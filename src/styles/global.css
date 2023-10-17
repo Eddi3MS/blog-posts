@@ -49,3 +49,40 @@ main {
 .text-center {
   text-align: center;
 }
+
+/* animation */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  -webkit-animation: fade-in 0.4s;
+  -moz-animation: fade-in 0.4s;
+  -ms-animation: fade-in 0.4s;
+  -o-animation: fade-in 0.4s;
+  animation: fade-in 0.4s;
+}
+
+@keyframes fade-in-top {
+  from {
+    opacity: 0;
+    transform: translateY(-16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-top {
+  -webkit-animation: fade-in-top 0.4s;
+  -moz-animation: fade-in-top 0.4s;
+  -ms-animation: fade-in-top 0.4s;
+  -o-animation: fade-in-top 0.4s;
+  animation: fade-in-top 0.4s;
+}
