@@ -6,16 +6,16 @@ import { getTimeAgo } from '../../../utils/formatRelativeTime'
 
 export const listPosts = createAsyncThunk(
   'posts/list',
-  async (_, { rejectWithValue }) => {
+  async (currentPage: number, { rejectWithValue }) => {
     try {
-      const response = await PostsServices.list()
+      const response = await PostsServices.list(currentPage)
 
       if (
         !response?.data?.results ||
         !response?.data?.results.length ||
         response.status === 204
       ) {
-        throw new Error('Nenhum post encontrado.')
+        throw new Error('No posts found.')
       }
 
       const formattedData = response.data.results.map((entry) => ({
@@ -23,7 +23,11 @@ export const listPosts = createAsyncThunk(
         created_datetime: getTimeAgo(new Date(entry.created_datetime)),
       }))
 
-      return formattedData
+      return {
+        data: formattedData,
+        next: response.data.next,
+        previous: response.data.previous,
+      }
     } catch (error) {
       const errorHandling = new ErrorHandling(error as AxiosError)
 

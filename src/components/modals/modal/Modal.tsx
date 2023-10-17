@@ -27,11 +27,26 @@ function Content(props: ComponentProps<typeof AlertDialog.Content>) {
   )
 }
 
+const buttonVariants = {
+  update: {
+    variant: 'green',
+    label: 'Save',
+  },
+  delete: {
+    variant: 'red',
+    label: 'Delete',
+  },
+  logout: {
+    variant: 'primary',
+    label: 'Confirm',
+  },
+} as const
+
 function Actions({
-  variant = 'green',
+  variant = 'update',
   handleAction,
 }: {
-  variant?: 'green' | 'red'
+  variant?: 'update' | 'delete' | 'logout'
   handleAction: VoidFunction
 }) {
   return (
@@ -40,8 +55,11 @@ function Actions({
         <Button variant="secondary">Cancel</Button>
       </AlertDialog.Cancel>
       <AlertDialog.Action asChild>
-        <Button variant={variant} onClick={handleAction}>
-          {variant === 'red' ? 'Delete' : 'Save'}
+        <Button
+          variant={buttonVariants[variant].variant}
+          onClick={handleAction}
+        >
+          {buttonVariants[variant].label}
         </Button>
       </AlertDialog.Action>
     </div>

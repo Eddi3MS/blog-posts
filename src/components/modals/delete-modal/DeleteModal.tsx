@@ -4,7 +4,7 @@ import { ErrorHandling } from '../../../errors'
 import { setError } from '../../../redux/error/errorSlice'
 import { useAppDispatch } from '../../../redux/hooks'
 import { deletePost } from '../../../redux/posts/postsSlice'
-import Modal from '../modal'
+import Modal from '../modal/Modal'
 
 interface DeleteModalProps {
   open: boolean
@@ -31,7 +31,7 @@ function DeleteModal({ postId, onOpenChange, ...rest }: DeleteModalProps) {
         <Modal.Title className="text-xl">
           Are you sure you want to delete this item?
         </Modal.Title>
-        <Modal.Actions handleAction={handleDelete} variant="red" />
+        <Modal.Actions handleAction={handleDelete} variant="delete" />
       </Modal.Content>
     </Modal>
   )

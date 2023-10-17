@@ -8,5 +8,7 @@ export interface SinglePostDTO {
 }
 
 export interface ListPostsDTO {
+  next: string | null
+  previous: string | null
   results: SinglePostDTO[]
 }

@@ -15,12 +15,18 @@ interface PostsState {
   loading: boolean
   error: IError | null
   data: SinglePost[] | null
+  next: string | null
+  previous: string | null
+  currentPage: number
 }
 
 const initialState: PostsState = {
   loading: true,
   error: null,
   data: null,
+  next: null,
+  previous: null,
+  currentPage: 1,
 }
 
 const postsSlice = createSlice({
@@ -51,6 +57,12 @@ const postsSlice = createSlice({
         post.id === payload.id ? { ...post, ...payload } : post
       )
     },
+    nextPage: (state) => {
+      state.currentPage++
+    },
+    previousPage: (state) => {
+      state.currentPage--
+    },
   },
   extraReducers: ({ addCase }) => {
     addCase(listPosts.pending, (state) => {
@@ -59,7 +71,9 @@ const postsSlice = createSlice({
       state.error = null
     })
     addCase(listPosts.fulfilled, (state, { payload }) => {
-      state.data = payload
+      state.data = payload.data
+      state.next = payload.next
+      state.previous = payload.previous
       state.loading = false
       state.error = null
     })
@@ -75,6 +89,7 @@ const postsSlice = createSlice({
   },
 })
 
-export const { createPost, deletePost, updatePost } = postsSlice.actions
+export const { createPost, deletePost, updatePost, nextPage, previousPage } =
+  postsSlice.actions
 
 export default postsSlice.reducer

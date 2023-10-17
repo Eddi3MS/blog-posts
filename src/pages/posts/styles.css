@@ -13,9 +13,11 @@
     height: 80px;
     display: flex;
     align-items: center;
+    justify-content: space-between;
   }
 
   & > div {
+    flex: 1;
     padding-inline: var(--spacing);
     display: flex;
     flex-direction: column;

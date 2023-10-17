@@ -26,8 +26,12 @@ class PostsServices {
     return await api.delete(`/careers/${id}/`)
   }
 
-  public static async list(): Promise<AxiosResponse<ListPostsDTO>> {
-    return await api.get<ListPostsDTO>('/careers/')
+  public static async list(
+    currentPage: number
+  ): Promise<AxiosResponse<ListPostsDTO>> {
+    return await api.get<ListPostsDTO>(
+      `/careers/${currentPage > 1 ? `?page=${currentPage}` : ''}`
+    )
   }
 }
 

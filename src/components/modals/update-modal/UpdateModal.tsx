@@ -69,7 +69,7 @@ function UpdateModal({
           />
         </div>
 
-        <Modal.Actions handleAction={handleUpdatePost} variant="green" />
+        <Modal.Actions handleAction={handleUpdatePost} variant="update" />
       </Modal.Content>
     </Modal>
   )
