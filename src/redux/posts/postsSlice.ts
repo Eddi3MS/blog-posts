@@ -1,18 +1,20 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { listPosts } from './thunks/listPosts'
 import { IError } from '../../errors'
+import { getTimeAgo } from '../../utils/formatRelativeTime'
+
+interface SinglePost {
+  id: number
+  username: string
+  created_datetime: string
+  title: string
+  content: string
+}
 
 interface PostsState {
   loading: boolean
   error: IError | null
-  data:
-    | {
-        username: string
-        timestamp: string
-        title: string
-        content: string
-      }[]
-    | null
+  data: SinglePost[] | null
 }
 
 const initialState: PostsState = {
@@ -25,7 +27,19 @@ const postsSlice = createSlice({
   name: 'posts',
   initialState,
   reducers: {
-    updatePost: () => {},
+    createPost: (state, { payload }: { payload: SinglePost }) => {
+      state.data = [
+        {
+          ...payload,
+          created_datetime: getTimeAgo(new Date(payload.created_datetime)),
+        },
+        ...(state?.data ? state.data : []),
+      ]
+    },
+    deletePost: (state, { payload }: { payload: { postId: number } }) => {
+      if (!state.data) return
+      state.data = state.data.filter((post) => post.id !== payload.postId)
+    },
   },
   extraReducers: ({ addCase }) => {
     addCase(listPosts.pending, (state) => {
@@ -50,6 +64,6 @@ const postsSlice = createSlice({
   },
 })
 
-export const { updatePost } = postsSlice.actions
+export const { createPost, deletePost } = postsSlice.actions
 
 export default postsSlice.reducer

@@ -1,3 +1,5 @@
+import { DeleteIcon, EditIcon } from '../../assets/svgs'
+import Button from '../button'
 import './styles.css'
 
 interface SinglePostProps {
@@ -6,22 +8,28 @@ interface SinglePostProps {
   username: string
   timestamp: string
   content: string
+  handleDeleteModal: VoidFunction
 }
 
 function SinglePost({
   showActions,
+
   title,
   username,
   timestamp,
   content,
+  handleDeleteModal,
 }: SinglePostProps) {
   return (
     <article className="single_post_container">
       <header>
         <h3 className="text-xl">{title}</h3>
         {showActions ? (
-          <div>
-            <button>deletar</button> <button>editar</button>
+          <div className="single_post_actions">
+            <Button variant="invisible" onClick={handleDeleteModal}>
+              {DeleteIcon}
+            </Button>
+            <Button variant="invisible">{EditIcon}</Button>
           </div>
         ) : null}
       </header>

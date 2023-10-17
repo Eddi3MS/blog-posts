@@ -42,3 +42,14 @@
   background-color: var(--white);
   border: 1px solid var(--gray3);
 }
+
+.button-invisible {
+  padding: 0;
+  background-color: transparent;
+  color: var(--white);
+  transition: color 0.3s ease-in-out;
+
+  &:hover {
+    color: var(--gray4);
+  }
+}

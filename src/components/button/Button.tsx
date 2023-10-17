@@ -3,7 +3,7 @@ import './styles.css'
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   isLoading?: boolean
-  variant?: 'primary' | 'red' | 'green' | 'secondary'
+  variant?: 'primary' | 'red' | 'green' | 'secondary' | 'invisible'
 }
 
 function Button({

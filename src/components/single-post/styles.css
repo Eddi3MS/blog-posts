@@ -6,9 +6,20 @@
     background-color: var(--primary);
     color: var(--white);
     padding-inline: 1.5rem;
-    height: 70px;
+    min-height: 70px;
     display: flex;
     align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.single_post_actions {
+  display: flex;
+  gap: 0.5rem;
+
+  & > button:nth-of-type(2) {
+    position: relative;
+    top: 1px;
   }
 }
 

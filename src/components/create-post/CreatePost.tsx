@@ -1,16 +1,23 @@
+import { AxiosError } from 'axios'
 import { Button, Input, Textarea } from '..'
 import { PostsServices } from '../../actions/postsServices/postServices'
-import { useAppSelector } from '../../redux/hooks'
+import { ErrorHandling } from '../../errors'
+import { useAppDispatch, useAppSelector } from '../../redux/hooks'
 import './styles.css'
 import { useState } from 'react'
+import { setError } from '../../redux/error/errorSlice'
+import { createPost } from '../../redux/posts/postsSlice'
+
+const postDataInitial = {
+  title: '',
+  content: '',
+}
 
 function CreatePost() {
-  const [postData, setPostData] = useState({
-    title: '',
-    content: '',
-  })
+  const [postData, setPostData] = useState(postDataInitial)
 
   const username = useAppSelector((state) => state.user.username)
+  const dispatch = useAppDispatch()
 
   const handleChange = (
     e:
@@ -35,9 +42,11 @@ function CreatePost() {
     try {
       const res = await PostsServices.create(data)
 
-      console.log(res)
+      dispatch(createPost(res.data))
+      setPostData(postDataInitial)
     } catch (error) {
-      console.log(error)
+      const errorHandling = new ErrorHandling(error as AxiosError)
+      dispatch(setError({ error: errorHandling.error.message }))
     }
   }
 

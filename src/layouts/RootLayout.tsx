@@ -1,14 +1,17 @@
-import { Provider } from 'react-redux'
 import { Outlet } from 'react-router-dom'
-import { store } from '../redux'
+import { useAppSelector } from '../redux/hooks'
+import ErrorModal from '../components/error-modal/ErrorModal'
 
 function RootLayout() {
+  const error = useAppSelector((state) => state.error.error)
   return (
-    <Provider store={store}>
+    <>
       <main>
         <Outlet />
       </main>
-    </Provider>
+
+      {error ? <ErrorModal /> : null}
+    </>
   )
 }
 
