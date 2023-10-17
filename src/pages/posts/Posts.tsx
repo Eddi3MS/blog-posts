@@ -1,7 +1,11 @@
 import { useEffect, useState } from 'react'
 import { Navigate } from 'react-router-dom'
-import { CreatePost, SinglePost } from '../../components'
-import DeleteModal from '../../components/delete-modal/DeleteModal'
+import {
+  CreatePost,
+  DeleteModal,
+  SinglePost,
+  UpdateModal,
+} from '../../components'
 import { useAppDispatch, useAppSelector } from '../../redux/hooks'
 import { listPosts } from '../../redux/posts/thunks/listPosts'
 import './styles.css'
@@ -13,6 +17,12 @@ function Posts() {
   const [deleteModalData, setDeleteModalData] = useState({
     show: false,
     id: -1,
+  })
+  const [updateModalData, setUpdateModalData] = useState({
+    show: false,
+    id: -1,
+    title: '',
+    content: '',
   })
 
   useEffect(() => {
@@ -33,27 +43,30 @@ function Posts() {
         <div>
           <CreatePost />
 
-          {posts.loading
-            ? 'loading..'
-            : posts.data
-            ? posts.data.map(
-                ({ username, title, content, timestamp, id }, index) => (
-                  <SinglePost
-                    key={index}
-                    username={username}
-                    title={title}
-                    content={content}
-                    timestamp={timestamp}
-                    showActions={username === user.username}
-                    handleDeleteModal={() =>
-                      setDeleteModalData({ show: true, id })
-                    }
-                  />
-                )
+          {posts.loading ? (
+            <span className="text-center">loading..</span>
+          ) : posts.data ? (
+            posts.data.map(
+              ({ username, title, content, created_datetime, id }, index) => (
+                <SinglePost
+                  key={index}
+                  username={username}
+                  title={title}
+                  content={content}
+                  timestamp={created_datetime}
+                  showActions={username === user.username}
+                  handleDeleteModal={() =>
+                    setDeleteModalData({ show: true, id })
+                  }
+                  handleUpdateModal={() =>
+                    setUpdateModalData({ show: true, id, content, title })
+                  }
+                />
               )
-            : posts.error
-            ? posts.error?.message
-            : null}
+            )
+          ) : posts.error ? (
+            <span className="text-center">{posts.error?.message}</span>
+          ) : null}
         </div>
       </section>
 
@@ -62,6 +75,18 @@ function Posts() {
           open={deleteModalData.show}
           onOpenChange={() => setDeleteModalData({ show: false, id: -1 })}
           postId={deleteModalData.id}
+        />
+      ) : null}
+
+      {updateModalData.show ? (
+        <UpdateModal
+          open={updateModalData.show}
+          onOpenChange={() =>
+            setUpdateModalData({ show: false, id: -1, content: '', title: '' })
+          }
+          postId={updateModalData.id}
+          content={updateModalData.content}
+          title={updateModalData.title}
         />
       ) : null}
     </>

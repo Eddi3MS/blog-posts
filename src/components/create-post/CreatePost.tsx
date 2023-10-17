@@ -2,33 +2,17 @@ import { AxiosError } from 'axios'
 import { Button, Input, Textarea } from '..'
 import { PostsServices } from '../../actions/postsServices/postServices'
 import { ErrorHandling } from '../../errors'
-import { useAppDispatch, useAppSelector } from '../../redux/hooks'
-import './styles.css'
-import { useState } from 'react'
+import { usePostData } from '../../hooks'
 import { setError } from '../../redux/error/errorSlice'
+import { useAppDispatch, useAppSelector } from '../../redux/hooks'
 import { createPost } from '../../redux/posts/postsSlice'
-
-const postDataInitial = {
-  title: '',
-  content: '',
-}
+import './styles.css'
 
 function CreatePost() {
-  const [postData, setPostData] = useState(postDataInitial)
+  const { handleChangePostData, handleClearPostData, postData } = usePostData()
 
   const username = useAppSelector((state) => state.user.username)
   const dispatch = useAppDispatch()
-
-  const handleChange = (
-    e:
-      | React.ChangeEvent<HTMLInputElement>
-      | React.ChangeEvent<HTMLTextAreaElement>
-  ) => {
-    setPostData((currentData) => ({
-      ...currentData,
-      [e.target.name]: e.target.value,
-    }))
-  }
 
   const handleCreatePost = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -41,9 +25,8 @@ function CreatePost() {
 
     try {
       const res = await PostsServices.create(data)
-
       dispatch(createPost(res.data))
-      setPostData(postDataInitial)
+      handleClearPostData()
     } catch (error) {
       const errorHandling = new ErrorHandling(error as AxiosError)
       dispatch(setError({ error: errorHandling.error.message }))
@@ -61,7 +44,7 @@ function CreatePost() {
           name="title"
           placeholder="Hello World"
           value={postData.title}
-          onChange={handleChange}
+          onChange={handleChangePostData}
         />
         <Textarea
           rows={3}
@@ -69,7 +52,7 @@ function CreatePost() {
           label="Content"
           name="content"
           value={postData.content}
-          onChange={handleChange}
+          onChange={handleChangePostData}
         />
 
         <Button

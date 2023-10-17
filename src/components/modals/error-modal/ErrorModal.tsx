@@ -1,7 +1,7 @@
-import { clearError } from '../../redux/error/errorSlice'
-import { useAppDispatch, useAppSelector } from '../../redux/hooks'
-import Button from '../button'
-import Modal from '../modal/Modal'
+import { clearError } from '../../../redux/error/errorSlice'
+import { useAppDispatch, useAppSelector } from '../../../redux/hooks'
+import Button from '../../button'
+import Modal from '../modal'
 
 function ErrorModal() {
   const error = useAppSelector((state) => state.error.error)

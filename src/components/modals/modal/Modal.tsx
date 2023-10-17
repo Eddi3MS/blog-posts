@@ -1,7 +1,7 @@
 import * as AlertDialog from '@radix-ui/react-alert-dialog'
 import './styles.css'
 import { ComponentProps } from 'react'
-import Button from '../button'
+import Button from '../../button'
 
 function Modal(props: ComponentProps<typeof AlertDialog.Root>) {
   return <AlertDialog.Root {...props} />

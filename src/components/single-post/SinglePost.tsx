@@ -9,6 +9,7 @@ interface SinglePostProps {
   timestamp: string
   content: string
   handleDeleteModal: VoidFunction
+  handleUpdateModal: VoidFunction
 }
 
 function SinglePost({
@@ -19,6 +20,7 @@ function SinglePost({
   timestamp,
   content,
   handleDeleteModal,
+  handleUpdateModal,
 }: SinglePostProps) {
   return (
     <article className="single_post_container">
@@ -29,7 +31,9 @@ function SinglePost({
             <Button variant="invisible" onClick={handleDeleteModal}>
               {DeleteIcon}
             </Button>
-            <Button variant="invisible">{EditIcon}</Button>
+            <Button variant="invisible" onClick={handleUpdateModal}>
+              {EditIcon}
+            </Button>
           </div>
         ) : null}
       </header>

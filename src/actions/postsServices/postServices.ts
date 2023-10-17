@@ -16,7 +16,7 @@ class PostsServices {
   }
 
   public static async update(
-    id: string,
+    id: number,
     data: Omit<CreatePostParams, 'username'>
   ) {
     return await api.patch(`/careers/${id}/`, data)

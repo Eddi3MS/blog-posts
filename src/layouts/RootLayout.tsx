@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom'
 import { useAppSelector } from '../redux/hooks'
-import ErrorModal from '../components/error-modal/ErrorModal'
+import { ErrorModal } from '../components'
 
 function RootLayout() {
   const error = useAppSelector((state) => state.error.error)

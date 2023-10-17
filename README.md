@@ -2,7 +2,7 @@
 [ ] logout
 [x] create
 [x] read
-[ ] update
+[x] update
 [x] delete
 [x] error feedback
 

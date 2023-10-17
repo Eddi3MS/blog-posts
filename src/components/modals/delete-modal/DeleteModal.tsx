@@ -1,10 +1,10 @@
 import { AxiosError } from 'axios'
-import { PostsServices } from '../../actions/postsServices/postServices'
-import { ErrorHandling } from '../../errors'
-import { setError } from '../../redux/error/errorSlice'
-import { useAppDispatch } from '../../redux/hooks'
-import { deletePost } from '../../redux/posts/postsSlice'
-import Modal from '../modal/Modal'
+import { PostsServices } from '../../../actions/postsServices/postServices'
+import { ErrorHandling } from '../../../errors'
+import { setError } from '../../../redux/error/errorSlice'
+import { useAppDispatch } from '../../../redux/hooks'
+import { deletePost } from '../../../redux/posts/postsSlice'
+import Modal from '../modal'
 
 interface DeleteModalProps {
   open: boolean

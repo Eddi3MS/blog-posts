@@ -1,0 +1,6 @@
+.update_modal_form {
+  margin-top: -1rem;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing);
+}

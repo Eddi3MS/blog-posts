@@ -40,6 +40,17 @@ const postsSlice = createSlice({
       if (!state.data) return
       state.data = state.data.filter((post) => post.id !== payload.postId)
     },
+
+    updatePost: (
+      state,
+      { payload }: { payload: { id: number; title: string; content: string } }
+    ) => {
+      if (!state?.data) return
+
+      state.data = state.data.map((post) =>
+        post.id === payload.id ? { ...post, ...payload } : post
+      )
+    },
   },
   extraReducers: ({ addCase }) => {
     addCase(listPosts.pending, (state) => {
@@ -64,6 +75,6 @@ const postsSlice = createSlice({
   },
 })
 
-export const { createPost, deletePost } = postsSlice.actions
+export const { createPost, deletePost, updatePost } = postsSlice.actions
 
 export default postsSlice.reducer
