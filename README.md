@@ -24,6 +24,3 @@ yarn -E
 yarn dev
 ```
 * to finally run it locally and see it in your browser
-
-
-see it [live](https://www.codeleap.edsonmarcelo.com.br/).
